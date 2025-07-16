@@ -375,6 +375,15 @@ const CoursesPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Stryve Learning 2.0 Logo at Bottom */}
+      <div className="flex justify-center py-12">
+        <img
+          src="/STRYVE Learning 2.0.png"
+          alt="STRYVE Learning 2.0 Logo"
+          className="max-w-xs md:max-w-md lg:max-w-lg w-full h-auto rounded-xl shadow-lg"
+        />
+      </div>
     </div>
   );
 };
