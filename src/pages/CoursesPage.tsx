@@ -178,12 +178,12 @@ const CoursesPage = () => {
     {
       question: "How much do the courses cost?",
       answer:
-        "We offer sliding scale pricing starting at $15 per session. Many courses are also available for free through our scholarship program. Contact us for financial assistance options.",
+        "All courses are completely FREE! We believe education should be accessible to everyone, so there are no fees, no hidden costs, and no payments required.",
     },
     {
-      question: "Can I get a refund if my child doesn't like the course?",
+      question: "Can my child enroll in multiple courses?",
       answer:
-        "Yes! We offer a 100% refund within the first week of any course. We want every student to find the right fit for their learning style.",
+        "Absolutely! Since all courses are free, students can enroll in as many courses as they're interested in. We encourage exploring different subjects to find what sparks their passion.",
     },
   ];
 
