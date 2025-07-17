@@ -1,6 +1,14 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { GraduationCap, Mail, Phone, MapPin, Facebook, Twitter, Instagram } from 'lucide-react';
+import React from "react";
+import { Link } from "react-router-dom";
+import {
+  GraduationCap,
+  Mail,
+  Phone,
+  MapPin,
+  Facebook,
+  Twitter,
+  Instagram,
+} from "lucide-react";
 
 const Footer = () => {
   return (
@@ -10,9 +18,9 @@ const Footer = () => {
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <img 
-                src="/files_1556947-1751755525948-IMG_5910-removebg-preview.png" 
-                alt="Stryve Learning" 
+              <img
+                src="/files_1556947-1751755525948-IMG_5910-removebg-preview.png"
+                alt="Stryve Learning"
                 className="h-8 w-auto"
               />
             </div>
@@ -30,11 +38,46 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><Link to="/" className="text-gray-300 hover:text-white transition-colors">Home</Link></li>
-              <li><Link to="/about" className="text-gray-300 hover:text-white transition-colors">About Us</Link></li>
-              <li><Link to="/courses" className="text-gray-300 hover:text-white transition-colors">Courses</Link></li>
-              <li><Link to="/donate" className="text-gray-300 hover:text-white transition-colors">Donate</Link></li>
-              <li><Link to="/contact" className="text-gray-300 hover:text-white transition-colors">Contact</Link></li>
+              <li>
+                <Link
+                  to="/"
+                  className="text-gray-300 hover:text-white transition-colors"
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/about"
+                  className="text-gray-300 hover:text-white transition-colors"
+                >
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/courses"
+                  className="text-gray-300 hover:text-white transition-colors"
+                >
+                  Courses
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/donate"
+                  className="text-gray-300 hover:text-white transition-colors"
+                >
+                  Donate
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/contact"
+                  className="text-gray-300 hover:text-white transition-colors"
+                >
+                  Contact
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -44,11 +87,13 @@ const Footer = () => {
             <div className="space-y-2">
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 text-purple-400" />
-                <span className="text-gray-300">contact@stryvelearning.com</span>
+                <span className="text-gray-300">
+                  contact@stryvelearning.com
+                </span>
               </div>
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4 text-purple-400" />
-                <span className="text-gray-300">(555) 123-4567</span>
+                <span className="text-gray-300">+1 (860) 368-1538</span>
               </div>
               <div className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4 text-purple-400" />
@@ -59,7 +104,9 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-700 mt-8 pt-8 text-center">
-          <p className="text-gray-400">&copy; 2025 Stryve Learning. All rights reserved.</p>
+          <p className="text-gray-400">
+            &copy; 2025 Stryve Learning. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
