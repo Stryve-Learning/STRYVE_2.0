@@ -12,7 +12,7 @@ const Header = () => {
     { name: 'About Us', href: '/about' },
     { name: 'Courses', href: '/courses' },
     { name: 'Donate', href: '/donate' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Contacts', href: '/contact' },
   ];
 
   const isActive = (path) => location.pathname === path;
