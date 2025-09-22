@@ -27,16 +27,6 @@ const Header = () => {
           <div class="muted" style="margin-top:2px;font-size:12px">Learn — Practice — Master</div>
         </div>
       </div>
-    /*<header className="fixed top-0 left-0 right-0 bg-white shadow-sm border-b border-gray-200 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <Link to="/" className="flex items-center space-x-2">
-            <img 
-              src="/files_1556947-1751755525948-IMG_5910-removebg-preview.png" 
-              alt="Stryve Learning" 
-              className="h-24 w-auto"
-            />
-          </Link>*/
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
