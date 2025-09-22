@@ -21,7 +21,7 @@ const Header = () => {
     <div class="app" role="application" aria-label="Stryve Learning">
     <header>
       <div class="brand">
-        <img class="logo" src="./IMG_5910.png">
+        <img class="logo" src="/files_1556947-1751755525948-IMG_5910-removebg-preview.png">
         <div>
           <div style="font-weight:800;color:rgb(179, 213, 228)">Stryve Learning</div>
           <div class="muted" style="margin-top:2px;font-size:12px">Learn — Practice — Master</div>
