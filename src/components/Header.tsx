@@ -47,8 +47,8 @@ const Header = () => {
               to={item.href}
               className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                 isActive(item.href)
-                  ? 'text-sky-200 bg-blue-600/10'
-                  : 'text-gray-700 hover:text-sky-200 hover:bg-gray-50'
+                  ? 'text-indigo-500 bg-blue-600/10'
+                  : 'text-gray-700 hover:text-indigo-500 hover:bg-gray-50'
               }`}
             >
               {item.name}
@@ -74,8 +74,8 @@ const Header = () => {
                   to={item.href}
                   className={`px-3 py-2 rounded-md text-base font-medium transition-colors ${
                     isActive(item.href)
-                      ? 'text-sky-200 bg-blue-600/10'
-                      : 'text-gray-700 hover:text-sky-200 hover:bg-gray-50'
+                      ? 'text-indigo-500 bg-blue-600/10'
+                      : 'text-gray-700 hover:text-indigo-500 hover:bg-gray-50'
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
