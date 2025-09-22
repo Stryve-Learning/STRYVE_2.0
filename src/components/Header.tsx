@@ -27,7 +27,7 @@ const Header = () => {
             alt="Stryve Learning logo"
           />
           <div>
-            <div style={{ fontWeight: 800, color: 'rgb(179, 213, 228)' }}>
+            <div style={{ fontWeight: 800, color: 'rgb(99, 102, 241)' }}>
               Stryve Learning
             </div>
             <div
