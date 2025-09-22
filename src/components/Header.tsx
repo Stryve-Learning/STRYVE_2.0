@@ -12,7 +12,7 @@ const Header = () => {
     { name: 'About Us', href: '/about' },
     { name: 'Courses', href: '/courses' },
     { name: 'Donate', href: '/donate' },
-    { name: 'Contacts', href: '/contact' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   const isActive = (path) => location.pathname === path;
@@ -47,8 +47,8 @@ const Header = () => {
               to={item.href}
               className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                 isActive(item.href)
-                  ? 'text-purple-600 bg-purple-50'
-                  : 'text-gray-700 hover:text-purple-600 hover:bg-gray-50'
+                  ? 'text-sky-200 bg-blue-600/10'
+                  : 'text-gray-700 hover:text-sky-200 hover:bg-gray-50'
               }`}
             >
               {item.name}
@@ -74,8 +74,8 @@ const Header = () => {
                   to={item.href}
                   className={`px-3 py-2 rounded-md text-base font-medium transition-colors ${
                     isActive(item.href)
-                      ? 'text-purple-600 bg-purple-50'
-                      : 'text-gray-700 hover:text-purple-600 hover:bg-gray-50'
+                      ? 'text-sky-200 bg-blue-600/10'
+                      : 'text-gray-700 hover:text-sky-200 hover:bg-gray-50'
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
