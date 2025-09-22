@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, GraduationCap } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import './MyComponent.css';
 
 const Header = () => {
@@ -15,44 +15,54 @@ const Header = () => {
     { name: 'Contact', href: '/contact' },
   ];
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path) => location.pathname === path;
 
   return (
-    <div class="app" role="application" aria-label="Stryve Learning">
-    <header>
-      <div class="brand">
-        <img class="logo" src="/files_1556947-1751755525948-IMG_5910-removebg-preview.png">
-        <div>
-          <div style="font-weight:800;color:rgb(179, 213, 228)">Stryve Learning</div>
-          <div class="muted" style="margin-top:2px;font-size:12px">Learn — Practice — Master</div>
+    <div className="app" role="application" aria-label="Stryve Learning">
+      <header>
+        <div className="brand">
+          <img
+            className="logo"
+            src="/files_1556947-1751755525948-IMG_5910-removebg-preview.png"
+            alt="Stryve Learning logo"
+          />
+          <div>
+            <div style={{ fontWeight: 800, color: 'rgb(179, 213, 228)' }}>
+              Stryve Learning
+            </div>
+            <div
+              className="muted"
+              style={{ marginTop: '2px', fontSize: '12px' }}
+            >
+              Learn — Practice — Master
+            </div>
+          </div>
         </div>
-      </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                  isActive(item.href)
-                    ? 'text-purple-600 bg-purple-50'
-                    : 'text-gray-700 hover:text-purple-600 hover:bg-gray-50'
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
-          </nav>
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex space-x-8">
+          {navigation.map((item) => (
+            <Link
+              key={item.name}
+              to={item.href}
+              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                isActive(item.href)
+                  ? 'text-purple-600 bg-purple-50'
+                  : 'text-gray-700 hover:text-purple-600 hover:bg-gray-50'
+              }`}
+            >
+              {item.name}
+            </Link>
+          ))}
+        </nav>
 
-          {/* Mobile menu button */}
-          <button
-            className="md:hidden p-2 rounded-md text-gray-700 hover:text-purple-600"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
-        </div>
+        {/* Mobile menu button */}
+        <button
+          className="md:hidden p-2 rounded-md text-gray-700 hover:text-purple-600"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
@@ -75,8 +85,8 @@ const Header = () => {
             </nav>
           </div>
         )}
-      </div>
-    </header>
+      </header>
+    </div>
   );
 };
 
