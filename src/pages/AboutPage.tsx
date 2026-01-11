@@ -8,6 +8,7 @@ import {
   Target,
   Heart,
 } from "lucide-react";
+import MathBackground from "../components/MathBackground";
 
 const AboutPage = () => {
   const tutors = [
@@ -57,6 +58,7 @@ const AboutPage = () => {
       color: "bg-green-500",
       icon: BookOpen,
       tags: ["🔧 Computer-Aided Design (CAD)", "🌌 Astronomy"],
+      photo: "/Personal Pictures/Rahul Esai.jpg",
     },
     {
       name: "Gian Handa",
@@ -69,6 +71,7 @@ const AboutPage = () => {
         "🌌 Astronomy",
         "🧠 AI & Machine Learning",
       ],
+      photo: "/Personal Pictures/GIAN HANDA.jpeg",
     },
     {
       name: "Maanit Pande",
@@ -85,7 +88,7 @@ const AboutPage = () => {
       bio: "Hi! My name is Anjani Nadimpalli and I am a rising sophomore at South Windsor High School. I am passionate and interested in teaching students skills they need for school and the real world. I compete in the Science Olympiad, First Robotics Competitions, MOEMS, AMC, MathCounts, and the SWHS math team. I’m excited to teach my knowledge and empower the younger generation!  I will be teaching Competition Math 1 and Medicine/Biology.",
       color: "bg-amber-500",
       icon: BookOpen,
-      tags: ["🧮 Competition Math 1", "�� Medicine / Biology"],
+      tags: ["🧮 Competition Math 1", "Medicine / Biology"],
       photo: "/Personal Pictures/Anjani Nadimpalli.JPEG",
     },
     {
@@ -94,7 +97,7 @@ const AboutPage = () => {
       bio: "Hi! I’m Abhipsa Pattnaik, a rising sophomore at South Windsor High School and one of the tutors at Stryve Learning. I’ve always been passionate about STEM and science. Through Stryve, I hope to make learning fun for our students and grow my own skills. I’ve competed in various FIRST robotics events, and science olympiad invitationals. I hope to take the skills and understanding I developed, to give back to the community! I will be teaching CAD and Medicine/Biology. ",
       color: "bg-pink-500",
       icon: Code,
-      tags: ["🔧 Computer-Aided Design (CAD)", "�� Medicine / Biology"],
+      tags: ["🔧 Computer-Aided Design (CAD)", "Medicine / Biology"],
       photo: "/Personal Pictures/Abhipsa Pattnaik.JPEG",
     },
     {
@@ -111,57 +114,58 @@ const AboutPage = () => {
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Header */}
-      <section className="bg-gradient-to-br from-purple-600 via-blue-600 to-purple-700 text-white py-16 border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-            About Stryve Learning
-          </h1>
-          <p className="text-xl md:text-2xl font-light max-w-3xl mx-auto text-blue-100">
-            We're students helping students achieve their academic dreams
-          </p>
+      <section className="bg-indigo-600 text-white py-6 border-b border-gray-200 relative pt-3">
+        {/* Dark overlay */}
+        <div className="absolute top-0 left-0 w-full h-full bg-black/20"></div>
+
+        <div className="hero-content bg-transparent text-gray-900 flex flex-col items-center justify-center mt-10 relative z-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p className="text-xl md:text-6xl font-light mb-4 text-white font-martina">
+              About <span className="text-indigo-300">Stryve Learning</span>
+            </p>
+
+            <p className="text-base md:text-base text-white font-helvetica pb-4">
+              Helping students achieve their academic dreams.
+            </p>
+          </div>
         </div>
       </section>
 
+
       {/* Our Story */}
-      <section className="py-16 bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <section className="py-16 bg-indigo-400 relative">
+        <div className="absolute top-0 left-0 w-full h-full bg-black/20"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10 relative">
             <div>
-              <h2 className="text-3xl font-bold mb-6">Our Story</h2>
-              <p className="text-gray-600 mb-6">
-                Stryve Learning was founded by a group of high-achieving
-                students who noticed a significant trend in the vagueness of
-                other tutoring services and wanted to bridge the gap and create
-                FREE online tutoring, for more niche subjects. We believe that
-                peer-to-peer learning creates a unique environment where
-                students feel more comfortable asking questions and taking
-                risks.
+              <h2 className="text-3xl font-bold mb-6 text-center">Our Story</h2>
+              <p className="text-white mb-6">
+                Stryve Learning was founded by a team of highly passionate and motivated high school students who recognized the lack of clarity in many existing tutoring services. Our goal was to bridge that gap by offering <strong>free online tutoring</strong> that also focuses on more specialized, niche subjects. We believe that peer-to-peer learning fosters a unique environment where students feel confident asking questions, exploring new ideas, and taking academic risks.
               </p>
-              <p className="text-gray-600 mb-6">
-                What started as a small idea turned into a national success,
-                amassing 4000 enrollments in our most recent year. We're not
-                just tutors, we are students ourselves and know how to teach as
-                we've overcame that sturggle before.
+              <p className="text-white mb-6">
+                What started as a small idea turned into a multinational success,
+                amassing ~600 total enrollments in our most recent year. We aren't just
+                tutors, but rather students who recognize the important of academic struggle, grit, and peer-to-peer communication.
               </p>
               <div className="grid grid-cols-2 gap-4 mt-8">
                 <div className="text-center">
                   <div className="bg-purple-100 rounded-full p-4 mb-2 w-16 h-16 flex items-center justify-center mx-auto">
                     <Users className="h-8 w-8 text-purple-600" />
                   </div>
-                  <h3 className="font-semibold text-gray-900">500+</h3>
+                  <h3 className="font-semibold text-gray-900">100+</h3>
                   <p className="text-sm text-gray-600">Students Helped</p>
                 </div>
                 <div className="text-center">
                   <div className="bg-purple-100 rounded-full p-4 mb-2 w-16 h-16 flex items-center justify-center mx-auto">
                     <Heart className="h-8 w-8 text-purple-600" />
                   </div>
-                  <h3 className="font-semibold text-gray-900">1000+</h3>
+                  <h3 className="font-semibold text-gray-900">150+</h3>
                   <p className="text-sm text-gray-600">Volunteer Hours</p>
                 </div>
               </div>
             </div>
             <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl p-8">
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">
+              <h3 className="text-2xl font-bold mb-4 text-gray-900 text-center">
                 Our Mission
               </h3>
               <p className="text-gray-700 mb-6">
@@ -199,9 +203,13 @@ const AboutPage = () => {
       </section>
 
       {/* Meet Our Tutors */}
-      <section className="py-16 bg-gradient-to-br from-purple-100 via-blue-50 to-purple-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">
+      <section className="py-16 bg-violet-800 relative">
+        <div className="absolute inset-0 z-0">
+          <MathBackground />
+        </div>
+        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 relative">
+          <h2 className="text-3xl font-bold text-center mb-12 text-white">
             Meet Our Tutors
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -214,12 +222,11 @@ const AboutPage = () => {
                   <img
                     src={tutor.photo}
                     alt={tutor.name}
-                    className="w-24 h-24 object-cover rounded-full mx-auto mb-4 border-4 border-white shadow"
+                    className="mt-4 w-24 h-24 object-cover rounded-full mx-auto mb-4 border-4 border-white shadow"
                   />
                 )}
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2">{tutor.name}</h3>
-                  <p className="text-sm text-gray-600 mb-3">{tutor.grade}</p>
+                  <h3 className="text-xl font-bold mb-2 text-center">{tutor.name}</h3>
                   <p className="text-gray-700 text-sm mb-4">{tutor.bio}</p>
                   <div className="flex flex-wrap gap-1">
                     {tutor.tags.map((tag, tagIndex) => (
@@ -239,33 +246,34 @@ const AboutPage = () => {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-16 bg-gradient-to-r from-blue-100 via-white to-purple-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">
+      <section className="py-16 bg-indigo-500 relative">
+        <div className="absolute top-0 left-0 w-full h-full bg-black/30"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 relative">
+          <h2 className="text-3xl font-bold text-center mb-12 text-white">
             Why Choose Stryve Learning?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="text-center">
-              <div className="bg-purple-100 rounded-full p-6 mb-4 w-20 h-20 flex items-center justify-center mx-auto">
+              <div className="bg-white rounded-full p-6 mb-4 w-20 h-20 flex items-center justify-center mx-auto">
                 <Users className="h-10 w-10 text-purple-600" />
               </div>
-              <h3 className="text-xl font-semibold mb-3">
+              <h3 className="text-xl font-semibold mb-3 text-white">
                 Student-Led Learning
               </h3>
-              <p className="text-gray-600">
+              <p className="text-white">
                 Our tutors are students themselves, creating a relatable and
                 comfortable learning environment with modern teaching methods
                 and more simplistic ways.
               </p>
             </div>
-            <div className="text-center">
+            <div className="text-center text-white">
               <div className="bg-purple-100 rounded-full p-6 mb-4 w-20 h-20 flex items-center justify-center mx-auto">
                 <Heart className="h-10 w-10 text-purple-600" />
               </div>
               <h3 className="text-xl font-semibold mb-3">
                 Accessible & Affordable
               </h3>
-              <p className="text-gray-600">
+              <p className="text-white">
                 Every class is FREE, and a person can join any number of classes
                 to their liking.
               </p>

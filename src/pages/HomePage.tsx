@@ -355,54 +355,70 @@ const StudentVoicesSection = () => {
         <StudentVoicesSection />
 
         {/* Our Guarantee */}
-<section className="relative py-12 bg-indigo-500 pb-18 border-t">
-  <div className="absolute top-0 left-0 w-full h-full bg-black/70"></div>
-  <div className="absolute inset-0 z-0">
-    <MathBackground />
-  </div>
+      <section className="relative py-12 bg-indigo-500 pb-18 border-t">
+        <div className="absolute top-0 left-0 w-full h-full bg-black/70"></div>
+        <div className="absolute inset-0 z-0">
+          <MathBackground />
+        </div>
 
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
-    <h2 className="text-3xl mb-16 font-helvetica text-white text-center">
-      Stryve Education <br /> <span className="text-violet-700">Guarantee</span>
-    </h2>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
+          <h2 className="text-4xl md:text-4xl font-extrabold text-white text-center mb-16 leading-tight">
+            <span className="block">Stryve Education</span>
+            <span className="block text-violet-400">Guarantee</span>
+          </h2>
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-center">
 
-      <div className="flex flex-col items-center">
-        <img src="https://uxwing.com/wp-content/themes/uxwing/download/education-school/graduation-cap-icon.svg"
-             alt="Personalized Learning Icon" className="w-16 h-16 mb-4 filter invert"/>
-        <p className="text-white text-base">
-          <strong>Personalized Learning:</strong> Tailored lessons that meet each student’s pace and goals.
-        </p>
-      </div>
 
-      <div className="flex flex-col items-center">
-        <img src="https://static.thenounproject.com/png/7664533-512.png"
-             alt="Expert Guidance Icon" className="w-16 h-16 mb-4"/>
-        <p className="text-white text-base">
-          <strong>Expert Guidance:</strong> Clear explanations and actionable feedback from top tutors.
-        </p>
-      </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 lg:gap-12 text-center">
 
-      <div className="flex flex-col items-center">
-        <img src="https://static.thenounproject.com/png/5331137-512.png"
-             alt="Comprehensive Support Icon" className="w-16 h-16 mb-4"/>
-        <p className="text-white text-base">
-          <strong>Comprehensive Support:</strong> Help with academics and skill development throughout your journey.
-        </p>
-      </div>
+            <div className="flex flex-col items-center p-6 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-all duration-300">
+              <div className="mb-4 flex items-center justify-center w-20 h-20 rounded-full bg-violet-600/20"><img src="https://uxwing.com/wp-content/themes/uxwing/download/education-school/education-icon.png"
+                  alt="Personalized Learning Icon" className="w-12 h-12 mb-4 mt-3"/></div>
+            <p className="text-white font-semibold text-lg mb-1">
+                Personalized Learning
+              </p>
+              <p className="text-white/80 text-sm leading-relaxed">
+                Tailored lessons that meet each student’s pace and goals.
+              </p>
+            </div>
 
-      <div className="flex flex-col items-center">
-        <img src="https://uxwing.com/wp-content/themes/uxwing/download/education-school/student-study-icon.svg"
-             alt="Always Accessible Icon" className="w-16 h-16 mb-4 filter invert"/>
-        <p className="text-white text-base">
-          <strong>Always Accessible:</strong> Available help whenever students need it — anytime, anywhere.
-        </p>
-      </div>
+            <div className="flex flex-col items-center p-6 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-all duration-300">
+              <div className="mb-4 flex items-center justify-center w-20 h-20 rounded-full bg-violet-600/20"><img src="https://static.thenounproject.com/png/5331137-512.png"
+                  alt="Expert Guidance Icon" className="w-12 h-12 mb-4 mt-4"/></div>
+            <p className="text-white font-semibold text-lg mb-1">
+                Expert Guidance
+              </p>
+              <p className="text-white/80 text-sm leading-relaxed">
+                Clear explanations and actionable feedback from top tutors.
+              </p>
+            </div>
 
-    </div>
-  </div>
-</section>
+
+            <div className="flex flex-col items-center p-6 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-all duration-300">
+              <div className="mb-4 flex items-center justify-center w-20 h-20 rounded-full bg-violet-600/20"><img src="https://uxwing.com/wp-content/themes/uxwing/download/education-school/education-study-icon.png"
+                  alt="Comprehensive Support Icon" className="w-12 h-12 mb-4 mt-3"/></div>
+            <p className="text-white font-semibold text-lg mb-1">
+                Comprehensive Support
+              </p>
+              <p className="text-white/80 text-sm leading-relaxed">
+                Help with academics and skill development throughout your journey.
+              </p>              
+            </div>
+
+            <div className="flex flex-col items-center p-6 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-all duration-300">
+              <div className="mb-4 flex items-center justify-center w-20 h-20 rounded-full bg-violet-600/20"><img src="https://uxwing.com/wp-content/themes/uxwing/download/location-travel-map/institution-university-college-location-outline-icon.png"
+                  alt="Always Accessible Icon" className="w-12 h-12 mb-4 mt-3"/></div>
+            <p className="text-white font-semibold text-lg mb-1">
+                Always Accessible
+              </p>
+              <p className="text-white/80 text-sm leading-relaxed">
+                Available help whenever students need it - anytime, anywhere.
+              </p>                 
+            </div>
+
+          </div>
+        </div>
+      </section>
 
 
         {/* Call to Action */}
@@ -415,22 +431,22 @@ const StudentVoicesSection = () => {
     {/* LEFT: STATS */}
     <div className="flex flex-col gap-8 text-center md:text-left pl-40">
       <div>
-        <p className="text-5xl font-bold text-white">10+</p>
-        <p className="text-sm uppercase tracking-wide text-violet-300">
+        <p className="text-8xl font-bold text-white">10+</p>
+        <p className="text-l uppercase tracking-wide text-violet-300">
           Courses Taught
         </p>
       </div>
 
       <div>
-        <p className="text-5xl font-bold text-white">3.5</p>
-        <p className="text-sm uppercase tracking-wide text-violet-300">
+        <p className="text-8xl font-bold text-white">3.5</p>
+        <p className="text-l uppercase tracking-wide text-violet-300">
           Avg Classes per Student
         </p>
       </div>
 
       <div>
-        <p className="text-5xl font-bold text-white">600+</p>
-        <p className="text-sm uppercase tracking-wide text-violet-300">
+        <p className="text-8xl font-bold text-white">600+</p>
+        <p className="text-l uppercase tracking-wide text-violet-300">
           Total Enrollments
         </p>
       </div>

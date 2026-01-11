@@ -29,11 +29,11 @@ const MathBackground: React.FC = () => {
     const height = container.offsetHeight;
 
     // Initialize symbols
-    const generated = Array.from({ length: 40 }).map(() => ({
+    const generated = Array.from({ length: 80 }).map(() => ({
   x: Math.random() * width,
   y: Math.random() * height,
-  speedX: (Math.random() - 0.5) * 0.3,
-  speedY: (Math.random() - 0.5) * 0.3,
+  speedX: (Math.random() - 0.4) * 0.5,
+  speedY: (Math.random() - 0.4) * 0.5,
   size: Math.random() * 24 + 14,
   rotation: Math.random() * 360,
   rotationSpeed: (Math.random() - 0.5) * 0.2,
