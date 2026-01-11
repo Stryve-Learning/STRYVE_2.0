@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import StudentVoiceItem from "../components/StudentVoiceItem";
+import MathBackground from "../components/MathBackground";
 import {
   Calendar,
   Users,
@@ -33,110 +35,436 @@ const HomePage = () => {
 
   const studentVoices = [
     {
-      name: "Venkatesh, Grade 7",
+      name: "Savir, Grade 4, Current Stryve Student",
       quote:
-        "Very useful tips and tricks to help you finish problems faster in math competitions.",
-      color: "bg-purple-100 border-purple-200",
+        "Stryve Learning helped me understand some of the harder math that middle schoolers learn.",
+      color: "bg-blue-900 border-blue-800",
     },
     {
       name: "Joel, Grade 5",
       quote:
         "I learned a lot of important things to be aware of when writing code.",
-      color: "bg-blue-100 border-blue-200",
+      color: "bg-violet-900 border-violet-800",
     },
     {
       name: "Adhvika, Grade 6",
       quote: "Astronomy feels so much more fun now!",
-      color: "bg-purple-100 border-purple-200",
+      color: "bg-blue-900 border-blue-800",
     },
     {
       name: "Aditya, Grade 5",
       quote:
         "Learning how to analyze the market and the basics of it was interesting but cool!",
-      color: "bg-blue-100 border-blue-200",
+      color: "bg-violet-900 border-violet-800",
     },
   ];
+
+const StudentVoicesSection = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isLocked, setIsLocked] = useState(false);
+  const scrollAccumulator = useRef(0);
+  const lastWheelTime = useRef(0);
+  const unlocking = useRef(false);
+
+  useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      if (!sectionRef.current || unlocking.current) return;
+
+      const rect = sectionRef.current.getBoundingClientRect();
+      const sectionTop = rect.top;
+      const viewportHeight = window.innerHeight;
+
+      // Check if section is entering viewport from above
+      const isEnteringFromTop = sectionTop <= 100 && sectionTop >= -50 && !isLocked;
+      
+      // Lock when scrolling down into the section
+      if (isEnteringFromTop && e.deltaY > 0) {
+        e.preventDefault();
+        setIsLocked(true);
+        setActiveIndex(0); // Start at first quote
+        scrollAccumulator.current = 0;
+        return;
+      }
+
+      // Handle locked state
+      if (isLocked) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // Throttle wheel events
+        const now = Date.now();
+        const timeSinceLastWheel = now - lastWheelTime.current;
+        if (timeSinceLastWheel < 100) {
+          return;
+        }
+        lastWheelTime.current = now;
+
+        // Accumulate scroll delta
+        scrollAccumulator.current += e.deltaY;
+        const threshold = 100;
+
+        // Scrolling down
+        if (scrollAccumulator.current > threshold) {
+          if (activeIndex < studentVoices.length - 1) {
+            // Move to next quote
+            setActiveIndex(prev => prev + 1);
+            scrollAccumulator.current = 0;
+          } else {
+            // At last quote - unlock and allow continued scrolling
+            unlocking.current = true;
+            setIsLocked(false);
+            scrollAccumulator.current = 0;
+            
+            // Allow a brief moment before re-enabling lock detection
+            setTimeout(() => {
+              unlocking.current = false;
+            }, 500);
+          }
+        } 
+        // Scrolling up
+        else if (scrollAccumulator.current < -threshold) {
+          if (activeIndex > 0) {
+            // Move to previous quote
+            setActiveIndex(prev => prev - 1);
+            scrollAccumulator.current = 0;
+          } else {
+            // At first quote - unlock and allow continued scrolling
+            unlocking.current = true;
+            setIsLocked(false);
+            scrollAccumulator.current = 0;
+            
+            // Allow a brief moment before re-enabling lock detection
+            setTimeout(() => {
+              unlocking.current = false;
+            }, 500);
+          }
+        }
+      }
+    };
+
+    window.addEventListener("wheel", handleWheel, { passive: false });
+
+    return () => {
+      window.removeEventListener("wheel", handleWheel);
+    };
+  }, [activeIndex, isLocked]);
+
+  // Lock body scroll when carousel is active
+  useEffect(() => {
+    if (isLocked) {
+      // Store current scroll position
+      const scrollY = window.scrollY;
+      
+      // Lock the body
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+    } else {
+      // Get the scroll position that was stored
+      const scrollY = document.body.style.top;
+      
+      // Unlock the body
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      
+      // Only restore position if we have a stored value
+      // This is KEY - we restore the position we were at when we locked
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
+    }
+  }, [isLocked]);
+
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+    };
+  }, []);
+
+
+  return (
+    <section
+      ref={sectionRef}
+      className="relative py-16 bg-indigo-500 bg-center min-h-screen flex flex-col items-center justify-center overflow-hidden"
+    >
+      <div className="absolute top-0 left-0 w-full h-full bg-black/80"></div>
+
+      <div className="flex-container flex flex-row justify-between items-center w-full">
+        <h2 className="text-3xl mb-12 relative z-20 font-helvetica text-white div1 ml-4 mt-4">
+        Hear directly from our<br/><span className="text-indigo-500">learners</span> about their<br/><span className="text-indigo-500">experiences</span> and <span className="text-indigo-500">growth</span><br/>with Stryve Learning.
+        <br/><br/>
+        <p className="text-base mb-8 relative z-10 font-helvetica text-white">Discover the experiences of our learners as <br/>they <span className="text-violet-700">explore</span> new subjects, <span className="text-violet-700">overcome</span> <br/>challenges, and grow both <span className="text-violet-700">academically</span> and<br/><span className="text-violet-700">personally</span> with Stryve Learning.</p>
+        
+        <Link
+  to="/about"
+  className="bg-gray-300 text-gray-800 px-4 py-2 rounded-full font-semibold shadow hover:bg-gray-400 hover:shadow-md transition-all duration-200 inline-block text-sm"
+>
+  Learn More
+</Link>
+
+      </h2>
+        {/* 3D Carousel Container */}
+      <div className="flex-1 flex justify-center">
+      <div className="relative w-full max-w-4xl px-4 h-96 flex items-center justify-center" style={{ perspective: '1000px' }}>
+        <div className="relative w-full h-full flex items-center justify-center">
+          {studentVoices.map((voice, index) => {
+            const offset = index - activeIndex;
+            const isActive = index === activeIndex;
+            
+            // Calculate position and scale
+            let transform = '';
+            let opacity = 0;
+            let zIndex = 0;
+            
+            if (offset === 0) {
+              // Active - center and large
+              transform = 'translateX(0%) scale(1.1) translateZ(0px)';
+              opacity = 1;
+              zIndex = 30;
+            } else if (offset === 1) {
+              // Next - slightly right and back
+              transform = 'translateX(70%) scale(0.85) translateZ(-100px) rotateY(-15deg)';
+              opacity = 0.6;
+              zIndex = 20;
+            } else if (offset === -1) {
+              // Previous - slightly left and back
+              transform = 'translateX(-50%) scale(0.85) translateZ(-100px) rotateY(15deg)';
+              opacity = 0.6;
+              zIndex = 20;
+            } else if (offset > 1) {
+              // Far right
+              transform = 'translateX(120%) scale(0.7) translateZ(-200px) rotateY(-25deg)';
+              opacity = 0.3;
+              zIndex = 10;
+            } else {
+              // Far left
+              transform = 'translateX(-85%) scale(0.5) translateZ(-200px) rotateY(25deg)';
+              opacity = 0.3;
+              zIndex = 10;
+            }
+
+            return (
+              <div
+                key={index}
+                className={`absolute transition-all duration-700 ease-out ${voice.color} border-2 p-8 rounded-xl shadow-2xl`}
+                style={{
+                  transform,
+                  opacity,
+                  zIndex,
+                  width: '80%',
+                  maxWidth: '500px',
+                  transformStyle: 'preserve-3d',
+                }}
+              >
+                <div className="flex flex-col items-center text-center">
+                  <Quote className={`h-6 w-6 text-white mb-3 transition-all duration-500 ${isActive ? 'scale-100' : 'scale-75'}`} />
+                  <p className={`text-white mb-4 font-medium transition-all duration-500 ${isActive ? 'text-lg' : 'text-base'}`}>
+                    "{voice.quote}"
+                  </p>
+                  <p className={`text-sm text-white font-semibold transition-all duration-500 ${isActive ? 'text-base' : 'text-xs'}`}>
+                    — {voice.name}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      </div>
+      </div>
+
+      
+
+      {/* Progress indicator */}
+      <div className="flex gap-3 mt-12 relative z-40">
+        {studentVoices.map((_, index) => (
+          <div
+            key={index}
+            className={`h-2 rounded-full transition-all duration-500 ${
+              index === activeIndex ? "bg-purple-600 w-12" : "bg-purple-300 w-2"
+            }`}
+          />
+        ))}
+      </div>
+
+      {/* Visual hint */}
+      {isLocked && (
+        <div className="absolute bottom-8 text-center text-purple-700 text-sm font-medium animate-pulse">
+          {activeIndex < studentVoices.length - 1 
+            ? "Scroll to see more voices" 
+            : "Scroll to continue"}
+        </div>
+      )}
+    </section>
+  );
+};
 
   return (
     <div className="flex flex-col min-h-screen">
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-br from-blue-200 via-purple-200 to-blue-300 text-gray-900 py-20 border-b border-gray-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="flex flex-col items-center mb-6">
-              <img
-                src="/6B8E992F-0885-47A0-8B1C-A8F7B8B0C908.png"
-                alt="Stryve Learning Logo"
-                className="h-32 md:h-40 w-auto"
-              />
-            </div>
-            <p className="text-xl md:text-2xl font-light mb-8 text-gray-600">
-              Built for Students. Designed for Parents. Powered by Passion.
-            </p>
-          </div>
-        </section>
+      <section className="relative">
+      
+      {/* Background video */}
+      <div className="video-bg">
+        <div className="video-foreground">
+          <iframe
+            src="https://www.youtube.com/embed/VkBnNxneA_A?autoplay=1&mute=1&controls=0&start=0&end=150&loop=1&playlist=VkBnNxneA_A"
+            frameBorder="0"
+            allow="autoplay; fullscreen"
+          />
+        </div>
+      </div>
 
-        {/* Quick Actions */}
-        <section className="py-12 bg-gradient-to-r from-purple-300 via-blue-200 to-purple-300">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {quickActions.map((action, index) => (
-                <Link
-                  key={index}
-                  to={action.href}
-                  className={`${action.color} text-white p-6 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all duration-200`}
-                >
-                  <action.icon className="h-8 w-8 mb-3" />
-                  <h3 className="text-lg font-semibold">{action.label}</h3>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
+      <div className="absolute top-0 left-0 w-full h-full bg-black/50"></div>
+
+      {/* Hero content */}
+      <div className="hero-content bg-transparent text-gray-900 py-20 border-b border-gray-200 justify-center md: justify-center flex flex-col items-center inset-0 md:mt-10 mt-10">
+        <div className="max-w-7xl mx-auto h-96 px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-xl md:text-6xl font-light mb-8 text-white font-martina">
+            Every <span className="text-indigo-500">Student.</span> <br />Every <span className="text-indigo-500">Step.</span> <br />Every <span className="text-indigo-500">Success.</span>
+          </p>
+
+        <p className="text-base md:text-base text-white mb-6 font-helvetica">
+          You push your limits in the classroom.<br />Push your potential with Stryve Learning.
+        </p>
+
+      <Link
+        to="/courses"
+        className="bg-gray-900 text-white px-8 py-4 rounded-2xl font-semibold shadow-lg hover:bg-gray-800 hover:shadow-xl transform transition-all duration-300 inline-block"
+      >
+        Get Started
+      </Link>
+
+        </div>
+      </div>
+
+    </section>
+
 
         {/* Student Voices */}
-        <section className="py-16 bg-gradient-to-br from-blue-300 via-purple-100 to-purple-300">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-center mb-12">
-              Student Voices
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
-              {studentVoices.map((voice, index) => (
-                <div
-                  key={index}
-                  className={`${voice.color} border-2 p-6 rounded-lg relative`}
-                >
-                  <Quote className="h-6 w-6 text-gray-400 mb-2" />
-                  <p className="text-gray-800 mb-4 font-medium">
-                    "{voice.quote}"
-                  </p>
-                  <p className="text-sm text-gray-600 font-semibold">
-                    — {voice.name}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <StudentVoicesSection />
+
+        {/* Our Guarantee */}
+<section className="relative py-12 bg-indigo-500 pb-18 border-t">
+  <div className="absolute top-0 left-0 w-full h-full bg-black/70"></div>
+  <div className="absolute inset-0 z-0">
+    <MathBackground />
+  </div>
+
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
+    <h2 className="text-3xl mb-16 font-helvetica text-white text-center">
+      Stryve Education <br /> <span className="text-violet-700">Guarantee</span>
+    </h2>
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-center">
+
+      <div className="flex flex-col items-center">
+        <img src="https://uxwing.com/wp-content/themes/uxwing/download/education-school/graduation-cap-icon.svg"
+             alt="Personalized Learning Icon" className="w-16 h-16 mb-4 filter invert"/>
+        <p className="text-white text-base">
+          <strong>Personalized Learning:</strong> Tailored lessons that meet each student’s pace and goals.
+        </p>
+      </div>
+
+      <div className="flex flex-col items-center">
+        <img src="https://static.thenounproject.com/png/7664533-512.png"
+             alt="Expert Guidance Icon" className="w-16 h-16 mb-4"/>
+        <p className="text-white text-base">
+          <strong>Expert Guidance:</strong> Clear explanations and actionable feedback from top tutors.
+        </p>
+      </div>
+
+      <div className="flex flex-col items-center">
+        <img src="https://static.thenounproject.com/png/5331137-512.png"
+             alt="Comprehensive Support Icon" className="w-16 h-16 mb-4"/>
+        <p className="text-white text-base">
+          <strong>Comprehensive Support:</strong> Help with academics and skill development throughout your journey.
+        </p>
+      </div>
+
+      <div className="flex flex-col items-center">
+        <img src="https://uxwing.com/wp-content/themes/uxwing/download/education-school/student-study-icon.svg"
+             alt="Always Accessible Icon" className="w-16 h-16 mb-4 filter invert"/>
+        <p className="text-white text-base">
+          <strong>Always Accessible:</strong> Available help whenever students need it — anytime, anywhere.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
         {/* Call to Action */}
-        <section className="py-16 bg-gradient-to-r from-purple-700 via-blue-700 to-purple-800 text-white border-t border-gray-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold mb-6 text-white">
-              Ready to Start Your Learning Journey?
-            </h2>
-            <p className="text-xl mb-8 text-blue-100">
-              Join thousands of students who have transformed their academic
-              performance
-            </p>
-            <Link
-              to="/courses"
-              className="bg-white text-purple-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200 inline-block shadow-md"
-            >
-              Explore Our Courses
-            </Link>
-          </div>
-        </section>
+
+          <section className="border-t border-b relative py-16 bg-violet-800 min-h-screen flex items-center justify-center overflow-hidden">
+  <div className="absolute inset-0 bg-black/40"></div>
+
+  <div className="relative z-20 max-w-7xl w-full px-6 flex flex-col md:flex-row items-center justify-between gap-12">
+    
+    {/* LEFT: STATS */}
+    <div className="flex flex-col gap-8 text-center md:text-left pl-40">
+      <div>
+        <p className="text-5xl font-bold text-white">10+</p>
+        <p className="text-sm uppercase tracking-wide text-violet-300">
+          Courses Taught
+        </p>
+      </div>
+
+      <div>
+        <p className="text-5xl font-bold text-white">3.5</p>
+        <p className="text-sm uppercase tracking-wide text-violet-300">
+          Avg Classes per Student
+        </p>
+      </div>
+
+      <div>
+        <p className="text-5xl font-bold text-white">600+</p>
+        <p className="text-sm uppercase tracking-wide text-violet-300">
+          Total Enrollments
+        </p>
+      </div>
+    </div>
+
+    {/* RIGHT: TEXT — RIGHT ALIGNED */}
+    <div className="max-w-xl text-center pr-40">
+      <h2 className="text-3xl font-helvetica text-white mb-6">
+        Ready to Start Your<br />
+        <span className="text-indigo-600">Learning</span> Journey?
+      </h2>
+
+      <p className="text-base font-helvetica text-white mb-8">
+        Join <span className="text-indigo-600">hundreds</span> of students from around the<br/>
+        <span className="text-indigo-600"> world</span> and begin your 
+        <span className="text-indigo-600"> personalized</span> learning <br/>journey today.
+        Explore new subjects, build <br/>valuable skills, and grow both 
+        <span className="text-indigo-600"> academically</span><br/> and 
+        <span className="text-indigo-600"> personally</span> with Stryve Learning.
+      </p>
+
+      <Link
+        to="/courses"
+        className="bg-gray-300 text-gray-800 px-6 py-3 rounded-full font-semibold shadow hover:bg-gray-400 hover:shadow-md transition-all duration-200 inline-block text-sm"
+      >
+        Explore Our Courses
+      </Link>
+    </div>
+
+  </div>
+</section>
+
+
+        
       </main>
     </div>
   );
